@@ -85,7 +85,7 @@ async function renderImageData(data) {
             ? "https://placehold.co/160"
             : /^https?:\/\//.test(avatar)
                 ? avatar
-                : `http://27.78.77.132:3366/${avatar}`;
+                : `http://127.0.0.1:3366/${avatar}`;
 
     //** Show Image content within Left-frame
     const imageFrame = $("#user-image-detail-preview");

@@ -380,7 +380,7 @@ public class PinterestCrawler {
     private static final String SEARCH_URL = "https://www.pinterest.com/search/pins/?q=AI%20technology%20wallpaper&rs=typed";
 
     // ===== DATABASE =====
-    private static final String DB_URL = "jdbc:mysql://27.78.77.132:9307/dabble_huan_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:9307/dabble_huan_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String DB_USER = "dabble_huan_user";
     private static final String DB_PASS = "dabble_huan_password";
 

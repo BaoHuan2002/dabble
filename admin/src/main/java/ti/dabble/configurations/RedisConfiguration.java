@@ -14,7 +14,7 @@ public class RedisConfiguration {
     @Bean
     public LettuceConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
-        config.setHostName("27.78.77.132");
+        config.setHostName("127.0.0.1");
         config.setPort(9379);
         config.setPassword("dabble_password");
         config.setUsername("dabble_redis");

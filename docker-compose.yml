@@ -1,0 +1,59 @@
+version: '3.8'
+
+services:
+  # 1. MySQL 8 Database
+  mysql:
+    image: mysql:8.0
+    container_name: dabble_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password_secret # Bạn có thể đặt tùy ý
+      MYSQL_DATABASE: dabble_huan_db            # Khớp với url: /dabble_huan_db
+      MYSQL_USER: dabble_huan_user              # Khớp với spring.datasource.username
+      MYSQL_PASSWORD: dabble_huan_password      # Khớp với spring.datasource.password
+    ports:
+      - "9307:3306" # Khớp với port 9307 trong spring.datasource.url
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - dabble_network
+
+  # 2. Redis Cache
+  redis:
+    image: redis:alpine
+    container_name: dabble_redis
+    restart: unless-stopped
+    ports:
+      - "9379:6379" # Khớp với spring.data.redis.port=9379
+    volumes:
+      - redis_data:/data
+    networks:
+      - dabble_network
+
+  # 3. Cassandra Database (Messenger)
+  cassandra:
+    image: cassandra:latest
+    container_name: dabble_cassandra
+    restart: unless-stopped
+    environment:
+      CASSANDRA_CLUSTER_NAME: DabbleCluster
+      CASSANDRA_DC: dc1                    # Khớp với spring.cassandra.local-datacenter
+      # Kích hoạt xác thực user/pass cho Cassandra
+      CASSANDRA_USER: cassandra            # Khớp với spring.cassandra.username
+      CASSANDRA_PASSWORD: cassandra123     # Khớp với spring.cassandra.password
+    ports:
+      - "9042:9042" # Khớp với spring.cassandra.port=9042
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+    networks:
+      - dabble_network
+
+# Định nghĩa Volumes để lưu dữ liệu cố định (không mất khi tắt Docker)
+volumes:
+  mysql_data:
+  redis_data:
+  cassandra_data:
+
+networks:
+  dabble_network:
+    driver: bridge
