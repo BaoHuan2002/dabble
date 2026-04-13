@@ -16,7 +16,7 @@ Trước khi chạy dự án, hãy đảm bảo máy của bạn đã cài đặ
 Thay vì cài đặt thủ công từng database, dự án sử dụng Docker để tự động hóa toàn bộ.
 
 ### 1. Khởi động các container
-Mở terminal tại thư mục chứa file `docker-compose.yml` và chạy:
+Mở terminal tại thư mục chứa file `docker-compose.yml` điền các thông tin của bạn và chạy:
 ```bash
 docker-compose up -d
 (Hệ thống sẽ khởi tạo MySQL ở port 9307, Redis ở 9379 và Cassandra ở 9042).
